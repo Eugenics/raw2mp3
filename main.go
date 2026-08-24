@@ -10,10 +10,25 @@ import (
 )
 
 const (
-	wavDir  = "wav"
-	mp3Dir  = "mp3"
-	workers = 4 // number of concurrent conversions
+	wavDir    = "wav"
+	mp3Dir    = "mp3"
+	ffmpegDir = "ffmpeg"
+	workers   = 4 // number of concurrent conversions
 )
+
+func ffmpegPath() string {
+	// Look for ffmpeg in local ffmpeg/ directory first
+	exe := "ffmpeg"
+	if runtime.GOOS == "windows" {
+		exe = "ffmpeg.exe"
+	}
+	localPath := filepath.Join(ffmpegDir, exe)
+	if _, err := os.Stat(localPath); err == nil {
+		return localPath
+	}
+	// Fallback to PATH
+	return "ffmpeg"
+}
 
 func main() {
 	// Ensure directories exist
@@ -111,7 +126,7 @@ func convert(wavPath string) string {
 }
 
 func runFFmpeg(args []string) error {
-	cmd := exec.Command("ffmpeg", args...)
+	cmd := exec.Command(ffmpegPath(), args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()

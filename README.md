@@ -13,12 +13,19 @@
 ## Требования
 
 - **Go 1.21+** (для сборки)
-- **FFmpeg** в PATH (с поддержкой `libmp3lame`)
+- **FFmpeg** в каталоге `ffmpeg/` рядом с бинарником (с поддержкой `libmp3lame`)
 
-На Windows рекомендуется установить через Winget:
-```powershell
-winget install Gyan.FFmpeg
+Структура:
 ```
+wavToMp3/
+├── wav2mp3.exe
+├── ffmpeg/
+│   └── ffmpeg.exe     (или ffmpeg на Linux/macOS)
+├── wav/
+└── mp3/
+```
+
+На Windows скачайте FFmpeg с [gyan.dev](https://www.gyan.dev/ffmpeg/builds/) (full build) и распакуйте `ffmpeg.exe` в папку `ffmpeg/`.
 
 ## Установка
 
@@ -60,6 +67,8 @@ wavToMp3/
 ├── main.go        # Исходный код
 ├── go.mod         # Go модуль
 ├── wav2mp3.exe    # Скомпилированный бинарник (не в git)
+├── ffmpeg/        # FFmpeg бинарник (не в git)
+│   └── ffmpeg.exe
 ├── wav/           # Входные WAV файлы (не в git)
 ├── mp3/           # Выходные MP3 файлы (не в git)
 └── .gitignore
