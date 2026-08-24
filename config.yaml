@@ -1,0 +1,10 @@
+# wav2mp3 configuration
+wav_dir: "wav"
+mp3_dir: "mp3"
+ffmpeg_dir: "ffmpeg\bin"
+workers: 4
+quality: 2
+bitrate: ""
+codec: "libmp3lame"
+overwrite: true
+verbose: false
