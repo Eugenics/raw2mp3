@@ -1,0 +1,16 @@
+# Binary
+wav2mp3.exe
+
+# Build artifacts
+*.exe
+
+# Input/Output directories
+wav/
+mp3/
+
+# ffmpeg folder (if present)
+ffmpeg/
+
+# IDE
+.vscode/
+.idea/
